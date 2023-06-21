@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { bibleVerseService } from './services/bibleVerse.service';
+import { verseOfTheDay } from './models/bibleVerse';
+import { googleCalendarService } from './services/googleCalendarService';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,13 @@ import { bibleVerseService } from './services/bibleVerse.service';
 })
 export class AppComponent implements OnInit{
   verseOfTheDay: any;
-  constructor(private bible: bibleVerseService){}
+  constructor(private bible: bibleVerseService, private event: googleCalendarService){}
   ngOnInit(){
-this.bible.showTasks().subscribe(verse =>{
+this.bible.fetchBibleVerse().subscribe(verse =>{
  this.verseOfTheDay = verse
 });
+
+this.event.fetchEvents();
+
 }  
 }

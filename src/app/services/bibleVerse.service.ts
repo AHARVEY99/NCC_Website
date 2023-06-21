@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import {
   HttpClient,
   HttpHeaders,
@@ -13,8 +13,9 @@ export class bibleVerseService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) {}
   // Read
-  showTasks() {
-    return this.http.get(`${this.apiUrl}`,{responseType: 'text'})
+  fetchBibleVerse() {
+        return this.http.get(`${this.apiUrl}`,{responseType: 'text'})
+
   }
   // Handle Errors
   error(error: HttpErrorResponse) {
