@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit{
   constructor(private bible: bibleVerseService){}
   ngOnInit(){
 this.bible.fetchBibleVerse().subscribe(verse =>{
+  console.log('working')
  this.verseOfTheDay = verse
 },(error) => {                              //Error callback
   this.verseOfTheDay = "My help comes from the Lord, who made heaven and earth -Psalm 121:2(ESV)"

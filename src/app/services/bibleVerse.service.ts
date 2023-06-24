@@ -9,25 +9,12 @@ import {
   providedIn: 'root',
 })
 export class bibleVerseService {
-  apiUrl: string = 'https://beta.ourmanna.com/api/v1/get';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  apiUrl: string = 'http://localhost:8080/verse';
+  headers = new HttpHeaders().set("Access-Control-Allow-Origin", "*");
   constructor(private http: HttpClient) {}
   // Read
   fetchBibleVerse() {
         return this.http.get(`${this.apiUrl}`,{responseType: 'text'})
+  }
 
-  }
-  // Handle Errors
-  error(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(() => {
-      return errorMessage;
-    });
-  }
 }

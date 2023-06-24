@@ -15,8 +15,5 @@ export class AppComponent implements OnInit{
 this.bible.fetchBibleVerse().subscribe(verse =>{
  this.verseOfTheDay = verse
 });
-
-this.event.fetchEvents();
-
 }  
 }
