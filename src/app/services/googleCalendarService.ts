@@ -3,8 +3,7 @@ import {
   HttpClient,
   HttpHeaders,
 } from '@angular/common/http';
-import { map } from 'rxjs';
-import { calendarEvent } from '../models/calendarEvent';
+import { days, months } from '../models/calendarEvent';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,15 +15,37 @@ export class googleCalendarService {
   }
 
   checkDateIsInPast(eventDate: Date) {
+    eventDate = new Date(eventDate)
+    console.log(eventDate)
     const date = new Date();
-    console.log(date)
     if(eventDate == undefined){
         return false   }
-    if (eventDate < date){
+    if (eventDate > date){
         return true
     }
     else{
         return false
     }
+  }
+
+  formatDate(eventDate: Date){
+    let dayExtension: any
+    eventDate = new Date(eventDate)
+    const day = days[eventDate.getDay()]
+    const month = months[eventDate.getMonth()]
+    const dayInMonth = eventDate.getDate()
+    if (dayInMonth === 1 || dayInMonth === 21 || dayInMonth === 31){
+         dayExtension = 'st'
+    }
+    else if (dayInMonth === 2 || dayInMonth === 22){
+         dayExtension = 'nd'
+    }
+    else if(dayInMonth === 3 || dayInMonth === 23){
+         dayExtension = 'rd'
+    }
+    else{
+         dayExtension = 'th'
+    }
+    return day + " " + dayInMonth + dayExtension + " " + month
   }
 }

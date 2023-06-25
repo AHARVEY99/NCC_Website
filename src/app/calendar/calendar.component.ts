@@ -23,7 +23,6 @@ this.calendar.fetchEvents().subscribe(event =>{
   }
   //create function to check if date is in past and call here
  });
-
 }
 );
 }  
