@@ -3,16 +3,28 @@ import {
   HttpClient,
   HttpHeaders,
 } from '@angular/common/http';
+import { map } from 'rxjs';
+import { calendarEvent } from '../models/calendarEvent';
 @Injectable({
   providedIn: 'root',
 })
 export class googleCalendarService {
-    //add ?key= to get below to work
   apiUrl: string = 'http://localhost:8080/calendarEvents';
-//   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) {}
-  // Read
   fetchEvents() {
         return this.http.get(`${this.apiUrl}`,{responseType: 'text'})
+  }
+
+  checkDateIsInPast(eventDate: Date) {
+    const date = new Date();
+    console.log(date)
+    if(eventDate == undefined){
+        return false   }
+    if (eventDate < date){
+        return true
+    }
+    else{
+        return false
+    }
   }
 }
