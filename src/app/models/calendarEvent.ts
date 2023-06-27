@@ -1,8 +1,8 @@
 export interface calendarEvent {
-    description: string;
+    location: string;
     summary: string;
     startTime: string;
-    endTime: Date
+    endTime: string
  }
 
  export var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']

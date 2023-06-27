@@ -17,9 +17,9 @@ this.calendar.fetchEvents().subscribe(event =>{
   let x = JSON.parse(event)
  x.items.forEach((y: any) => {
   if(this.calendar.checkDateIsInPast(y.start.date)){
-    this.futureCalEvent.push({description:y.description,summary:y.summary,startTime:y.start.date,endTime:y.end.date});
+    this.futureCalEvent.push({location:y.location,summary:y.summary,startTime:y.start.date,endTime:y.end.date});
   }else{
-    this.pastCalEvent.push({description:y.description,summary:y.summary,startTime:y.start.date,endTime:y.end.date});
+    this.pastCalEvent.push({location:y.location,summary:y.summary,startTime:y.start.date,endTime:y.end.date});
   }
   //create function to check if date is in past and call here
  });

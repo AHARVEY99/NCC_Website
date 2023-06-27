@@ -24,10 +24,10 @@ this.bible.fetchBibleVerse().subscribe(verse =>{
 this.calendar.fetchEvents().subscribe(event =>{
   let x = JSON.parse(event)
  x.items.forEach((y: any) => {
-  if(this.calendar.checkDateIsInPast(y.start.date)){
-    this.futureCalEvent.push({description:y.description,summary:y.summary,startTime:this.calendar.formatDate(y.start.date),endTime:y.end.date});
+  if(this.calendar.checkDateIsInPast(y.start.dateTime)){
+    this.futureCalEvent.push({location:y.location,summary:y.summary,startTime:this.calendar.formatDate(y.start.dateTime),endTime:this.calendar.calculateTime(y.start.dateTime, y.end.dateTime)});
   }else{
-    this.pastCalEvent.push({description:y.description,summary:y.summary,startTime:y.start.date,endTime:y.end.date});
+    this.pastCalEvent.push({location:y.location,summary:y.summary,startTime:y.start.date,endTime:this.calendar.calculateTime(y.start.dateTime, y.end.dateTime)});
   }
  });
 }

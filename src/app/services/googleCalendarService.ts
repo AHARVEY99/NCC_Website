@@ -16,7 +16,6 @@ export class googleCalendarService {
 
   checkDateIsInPast(eventDate: Date) {
     eventDate = new Date(eventDate)
-    console.log(eventDate)
     const date = new Date();
     if(eventDate == undefined){
         return false   }
@@ -26,6 +25,29 @@ export class googleCalendarService {
     else{
         return false
     }
+  }
+
+  calculateTime(startTime: Date, endTime: Date){
+    startTime = new Date(startTime)
+    endTime = new Date(endTime)
+    const startTimeHours = startTime.getHours()
+    var startTimeMinutes = startTime.getMinutes()
+    const endTimeHours = endTime.getHours()
+    var endTimeMinutes = endTime.getMinutes()
+    if(startTimeMinutes == 0){
+       var formatStartTime =  startTimeHours + ':' + startTimeMinutes + '0'
+    }
+    else{
+        formatStartTime =  startTimeHours + ':' + startTimeMinutes
+    }
+
+    if(endTimeMinutes == 0){
+        var formatEndTime =  endTimeHours + ':' + endTimeMinutes + '0'
+    }
+    else{
+        formatEndTime =  endTimeHours + ':' + endTimeMinutes
+    }
+    return formatStartTime + '-' + formatEndTime
   }
 
   formatDate(eventDate: Date){
