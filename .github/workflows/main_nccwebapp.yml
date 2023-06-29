@@ -26,9 +26,6 @@ jobs:
           npm install
           npm run build --if-present
           
-      - name: Zip artifact for deployment
-        run: zip testArchive.zip ./*
-      
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -48,8 +45,6 @@ jobs:
         with:
           name: node-app
           
-      - name: unzip artifact for deployment
-        run: unzip -r release.zip
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
