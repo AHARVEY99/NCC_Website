@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - NccWebApp
+name: Build and deploy Node.js app to Azure Web App - nccWebApp
 
 on:
   push:
@@ -25,8 +25,7 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          
-
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -46,13 +45,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-        
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'NccWebApp'
+          app-name: 'nccWebApp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EC6F38F832AA47B68BA3629A8AB17FF7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C93BA3FDE4BC4903A6E9C8F1F3A6D555 }}
           package: .
